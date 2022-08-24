@@ -39,6 +39,7 @@ class Communication(models.Model):
         max_length=50,
         choices=Event.choices,
     )
+    suspicious = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.owner_name}: {self.event}"
