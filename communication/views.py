@@ -33,7 +33,7 @@ class ListCreateCommunicationView(generics.ListCreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RetrieveUpdateDestroyCommunicatrionSerializer
     queryset = Communication.objects.all()
-    
+
     def handle_exception(self, exc):
         print(exc)
         return super().handle_exception(exc)
