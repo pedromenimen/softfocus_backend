@@ -52,8 +52,8 @@ MY_APPS = ["communication"]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 20
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 20,
 }
 
 MIDDLEWARE = [
@@ -100,7 +100,7 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = getenv("DATABASE_URL")
+DATABASE_URL = getenv("DATABASE_URL").replace("postgres", "postgresql")
 
 if DATABASE_URL:
     db_url = dj_database_url.config(
