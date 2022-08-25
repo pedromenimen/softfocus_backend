@@ -1,4 +1,3 @@
-from django.core.paginator import Paginator
 from geopy import distance
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
@@ -34,10 +33,6 @@ class ListCreateCommunicationView(generics.ListCreateAPIView):
     serializer_class = RetrieveUpdateDestroyCommunicatrionSerializer
     queryset = Communication.objects.all()
 
-    def handle_exception(self, exc):
-        print(exc)
-        return super().handle_exception(exc)
-
     def post(self, request, *args, **kwargs):
         """
         Overrwriting post function for filtering and fiding suspicious events (different event, same date and close location).
@@ -55,3 +50,15 @@ class ListCreateCommunicationView(generics.ListCreateAPIView):
             ):
                 request.data["suspicious"] = True
         return super().post(request, *args, **kwargs)
+
+
+class ListFilteredCommunicationView(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = RetrieveUpdateDestroyCommunicatrionSerializer
+    lookup_url_kwarg = "owner_cpf"
+
+    def get_queryset(self):
+        cpf = self.kwargs["owner_cpf"]
+        print(cpf)
+        queryset = Communication.objects.filter(owner_cpf__contains=cpf)
+        return queryset
