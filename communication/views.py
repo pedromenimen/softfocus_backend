@@ -2,7 +2,6 @@ from geopy import distance
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
-from rest_framework.views import Request
 
 from communication.models import Communication
 from communication.serializers import (
@@ -59,6 +58,5 @@ class ListFilteredCommunicationView(generics.ListAPIView):
 
     def get_queryset(self):
         cpf = self.kwargs["owner_cpf"]
-        print(cpf)
         queryset = Communication.objects.filter(owner_cpf__contains=cpf)
         return queryset
