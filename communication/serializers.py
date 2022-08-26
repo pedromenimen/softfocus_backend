@@ -8,8 +8,3 @@ class RetrieveUpdateDestroyCommunicatrionSerializer(serializers.ModelSerializer)
         model = Communication
         fields = "__all__"
 
-
-class ListCommunicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Communication
-        fields = ["latitude", "longitude", "event", "date"]
