@@ -37,7 +37,7 @@ class ListCreateCommunicationView(generics.ListCreateAPIView):
         """
         Overrwriting post function for filtering and fiding suspicious events (different event, same date and close location).
         """
-        updated_location = (request.data["latitude"], request.data["longitude"])
+        updated_location = (request.data.get("latitude"), request.data.get("longitude"))
         for location in Communication.objects.filter(
             date=request.data["date"]
         ).values_list("latitude", "longitude", "event"):
