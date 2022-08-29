@@ -1,7 +1,10 @@
 # softfocus_backend
 
-Para usar localmente é necessário a criação de um arquivo com o nome .env e a criação da variável responsável pela conexão com o banco:
+Para usar localmente é necessário a criação de um arquivo com o nome .env e a criação de algumas variáveis de ambiente:
+
 DATABASE_URL=postgresql://{user}:{password}@{host}:{port}/{dbname}
+
+SECRET_KEY=chave segura
 
 Para instalar todas as bibliotecas basta digitar pip install -r requirements.txt, já dentro de um ambiente virtual.
 
